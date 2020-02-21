@@ -1,0 +1,72 @@
+@model IEnumerable<CasaDeShow.Models.Compra>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<h1 class="fonte-clara">Eventos</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="table-dark text-center">
+            <th>
+               Evento
+            </th>
+            <th>
+                Capacidade
+            </th>
+            <th>
+                Data
+            </th>
+            <th>
+                Valor do ingresso
+            </th>
+            <th>
+                Local
+            </th>
+            <th>
+                Gênero musical
+            </th>
+            <th>
+                Quantidade de engressos comprados
+            </th>
+            <th>
+                Usuario
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            @if (SignInManager.IsSignedIn(User) && ViewBag.Usuario == item.IdentityUser)
+            {
+                <tr class="table-primary text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorIngresso)
+            </td>
+            <td>
+                @item.NomeCasa
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneroMusica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdentityUser)
+            </td>
+                </tr>
+            }
+}
+    </tbody>
+</table>

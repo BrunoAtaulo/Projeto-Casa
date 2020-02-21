@@ -1,0 +1,102 @@
+@model IEnumerable<CasaDeShow.Models.Evento>
+
+@{
+    ViewData["Title"] = "Evento";
+}
+
+<h1 class="fonte-clara">Eventos</h1>
+
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+    })
+</script>
+@if (ViewBag.contagem == 0)
+{
+    <p>
+        <a  class="badge badge-info" data-toggle="modal" data-target="#exampleModal" style="color: #FFF">
+            Criar novo evento
+        </a>
+    </p>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Necessário cadastrar uma casa de show!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+else{
+<p>
+    <a class="badge badge-info" asp-action="Create">Criar novo evento</a>
+</p>
+}
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="table-dark text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.NomeEvento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorIngresso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Casadeshow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeneroMusica)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-primary text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorIngresso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Casadeshow.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneroMusica)
+            </td>
+            <td>
+                <a class="badge badge-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a class="badge badge-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a class="badge badge-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

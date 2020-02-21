@@ -1,0 +1,40 @@
+@model CasaDeShow.Models.Evento
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div class="row">
+    <div class="col-md-12">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><h1 style="text-align: center">Detalhes - Evento</h1></div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                <div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.NomeEvento):</label>
+                @Html.DisplayFor(model => model.NomeEvento)
+                </div>
+                <div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.Capacidade):</label>
+                @Html.DisplayFor(model => model.Capacidade)
+                </div>
+                <div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.Data):</label>
+                @Html.DisplayFor(model => model.Data)
+                </div>
+                <div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.ValorIngresso):</label>
+                @Html.DisplayFor(model => model.ValorIngresso)
+                </div><div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.Casadeshow):</label>
+                @Html.DisplayFor(model => model.Casadeshow.Nome)
+                </div><div class="form-group">
+                <label class="fonte-clara" class="control-label">@Html.DisplayNameFor(model => model.GeneroMusica):</label>
+                @Html.DisplayFor(model => model.GeneroMusica) 
+            </div>
+            <div>
+                <a class="badge badge-secondary" asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+                <a class="badge badge-primary" asp-action="Index">Voltar para a lista</a>
+            </div>
+    </div>
+</div>

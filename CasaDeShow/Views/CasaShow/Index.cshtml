@@ -1,0 +1,41 @@
+@model IEnumerable<CasaDeShow.Models.Casadeshow>
+
+@{
+    ViewData["Title"] = "Casa de show";
+}
+
+<h1 class="fonte-clara">Casa de show</h1>
+
+<p>
+    <a class="badge badge-info" asp-action="Create">Cadastrar nova casa de show</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="table-dark text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="table-primary text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                <a class="badge badge-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a class="badge badge-info" asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a class="badge badge-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

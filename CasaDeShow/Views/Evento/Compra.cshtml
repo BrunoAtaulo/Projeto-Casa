@@ -1,0 +1,99 @@
+@model CasaDeShow.Models.Compra
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Comprar";
+}
+
+<script>
+function calcular() {
+  var n1 = parseInt(document.getElementById('n1').value, 10);
+  var n2 = parseInt(document.getElementById('n2').value, 10);
+  document.getElementById('resultado').innerHTML ="R$ " +( n1 * n2);
+}
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><h1 style="text-align: center">Comprar</h1></div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <form asp-action="ConfirmaCompra">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input readonly type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NomeEvento" class="control-label">Evento: </label>
+                <input readonly asp-for="NomeEvento" class="form-control" />
+                <span asp-validation-for="NomeEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidade" class="control-label">Capacidade: </label>
+                <input readonly asp-for="Capacidade" class="form-control" />
+                <span asp-validation-for="Capacidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label">Data: </label>
+                <input readonly asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorIngresso" class="control-label">Valor do ingresso: </label>
+                <input readonly asp-for="ValorIngresso"  id="n1"class="form-control" />
+                <span asp-validation-for="ValorIngresso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CasadeshowId" class="control-label">Casa de show: </label>
+                <select readonly asp-for="CasadeshowId" class="form-control">
+            	@foreach (var item in ViewBag.CasaDeShow)
+                {
+                    <option value="@item.Id">@item.Nome</option>
+                }
+                </select>  
+                <span asp-validation-for="CasadeshowId" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="GeneroMusica" class="control-label"></label>
+                <select name="GeneroMusica">
+                    <option value="Rock">Rock</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Pagode">Pagode</option>
+                    <option value="Samba">Samba</option>
+                    <option value="Axe">Axé</option>
+                    <option value="Gospel">Gospel</option>
+                    <option value="Forro">Forró</option>
+                    <option value="Funk">Funk</option>
+                </select>
+                <span asp-validation-for="GeneroMusica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IngressosRestantes" class="control-label">Ingressos Restantes: </label>
+                <input readonly asp-for="IngressosRestantes" class="form-control" />
+                <span asp-validation-for="IngressosRestantes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label">Quantidade: </label>
+                <input asp-for="Quantidade" id="n2" onblur="calcular()" class="form-control" placeholder="0" value="1" min="1" max="@Model.IngressosRestantes" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            <div>
+                 <label class="control-label">Total</label>
+                <div id="resultado">R$ </div> 
+            </div>
+            <div>
+            <input type="hidden" asp-for="IdentityUser" class="control-label"/>
+            </div>
+            <br>
+            
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success" /> |
+                <a class="badge badge-primary" asp-action="Index">Voltar para a lista</a>
+            </div>
+            
+        </form>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CasaDeShow.Models.Evento>
+<h1 class="fonte-clara">Eventos</h2>
+
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="table-dark text-center">
+            <th>
+                @* @Html.DisplayNameFor(model => model.NomeEvento) *@
+               Evento
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Capacidade) *@
+                Capacidade
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Data) *@
+                Data
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ValorIngresso) *@
+                Valor do ingresso
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Casadeshow) *@
+                Local
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.GeneroMusica) *@
+                Gênero musical
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr class="table-primary text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorIngresso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Casadeshow.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeneroMusica)
+            </td>
+            <td>
+                @if(@item.IngressosRestantes != 0){
+                <a class="btn btn-info" href="~/Evento/Compra/@item.Id">Comprar</a>}else{
+                    <a class="btn btn-danger" href="#" disable  >Esgotado</a>
+                }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

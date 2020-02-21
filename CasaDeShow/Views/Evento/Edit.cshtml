@@ -1,0 +1,67 @@
+@model CasaDeShow.Models.Evento
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card text-white bg-dark mb-3">
+                <div class="card-header"><h1 style="text-align: center">Editar - Evento</h1></div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NomeEvento" class="control-label">Evento: </label>
+                <input asp-for="NomeEvento" class="form-control" />
+                <span asp-validation-for="NomeEvento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacidade" class="control-label">Capacidade: </label>
+                <input asp-for="Capacidade" class="form-control" />
+                <span asp-validation-for="Capacidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label">Data: </label>
+                <input asp-for="Data" class="form-control" />
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorIngresso" class="control-label">Valor do ingresso: </label>
+                <input asp-for="ValorIngresso" class="form-control" />
+                <span asp-validation-for="ValorIngresso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CasadeshowId" class="control-label">Casa de show: </label>
+                <select asp-for="CasadeshowId" class="form-control">
+            	@foreach (var item in ViewBag.CasaDeShow)
+                {
+                    <option value="@item.Id">@item.Nome</option>
+                }
+                </select>  
+                <span asp-validation-for="CasadeshowId" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="GeneroMusica" class="control-label"></label>
+                @* <input asp-for="GeneroMusica" class="form-control" /> *@
+                <select name="GeneroMusica">
+                    <option value="Rock">Rock</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Pagode">Pagode</option>
+                    <option value="Samba">Samba</option>
+                    <option value="Axe">Axé</option>
+                    <option value="Gospel">Gospel</option>
+                    <option value="Forro">Forró</option>
+                    <option value="Funk">Funk</option>
+                </select>
+                <span asp-validation-for="GeneroMusica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success" /> |
+                <a class="badge badge-primary" asp-action="Index">Voltar para a lista</a>
+            </div>
+        </form>
+    </div>
+</div>
